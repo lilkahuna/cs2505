@@ -1,12 +1,19 @@
 #! /bin/bash
 
-dir=$(pwd)
-touch $dir/$1
+if [[ $# -ne 1 ]]; then
+	echo "file name required"
+	exit 1
+fi
 
-echo -e "#include <stdio>> \n" >> $1
+dir=$(pwd)
+file="$dir/$1"
+
+touch "$file"
+
+echo -e "#include <stdio> \n" >> $file
 echo "int main()
 {
     return 0;
-}" >> $1
+}" >> $file
 
 echo "template created"
